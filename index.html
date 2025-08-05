@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="index.css">
+
+</head>
+
+<body class="light-mode min-h-screen">
+    <!-- Theme Toggle -->
+    <button onclick="toggleTheme()" class="fixed top-4 right-4 glass w-12 h-12 rounded-xl text-white text-xl btn">
+        <span id="themeIcon">🌙</span>
+    </button>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <div class="glass w-20 h-20 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+                <span class="text-4xl">🌤️</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-semibold text-white mb-3">Weather App</h1>
+            <p class="text-white/70 text-lg">ข้อมูลสภาพอากาศแม่นยำ</p>
+        </div>
+
+        <!-- Search -->
+        <div class="glass rounded-3xl p-8 mb-12 max-w-2xl mx-auto">
+            <div class="flex gap-4 mb-6">
+                <input id="cityInput" placeholder="ค้นหาเมือง เช่น Bangkok, London, Tokyo..."
+                    class="glass flex-1 px-6 py-4 rounded-2xl text-white placeholder-white/60 focus:outline-none">
+                <button onclick="searchWeather()"
+                    class="glass btn px-8 py-4 text-white rounded-2xl flex items-center gap-2">
+                    <span>ค้นหา</span>
+                </button>
+            </div>
+
+            <!-- Favorites -->
+            <div id="favoritesSection">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-white font-medium">เมืองโปรด</h3>
+                    <button onclick="clearFavorites()" class="text-white/60 text-sm hover:text-white">ลบทั้งหมด</button>
+                </div>
+                <div id="favoritesList" class="flex flex-wrap gap-2"></div>
+            </div>
+        </div>
+
+
+
+        <!-- Weather Display -->
+        <div id="weatherDisplay" class="glass rounded-3xl p-10 mb-12 max-w-4xl mx-auto hidden">
+            <div class="text-center mb-10">
+                <h2 id="cityName" class="text-3xl font-semibold text-white mb-4"></h2>
+                <div id="weatherIcon" class="text-8xl mb-6"></div>
+                <p id="weatherDescription" class="text-xl text-white/80 mb-6"></p>
+                <div id="temperature" class="text-7xl font-light text-white mb-8"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-10">
+                <div class="glass metric rounded-2xl p-6 text-center transition-transform">
+                    <div class="text-2xl mb-2">💧</div>
+                    <p class="text-white/70 text-sm mb-2">ความชื้น</p>
+                    <p id="humidity" class="text-2xl font-semibold text-white"></p>
+                </div>
+                <div class="glass metric rounded-2xl p-6 text-center transition-transform">
+                    <div class="text-2xl mb-2">💨</div>
+                    <p class="text-white/70 text-sm mb-2">ความเร็วลม</p>
+                    <p id="windSpeed" class="text-2xl font-semibold text-white"></p>
+                </div>
+                <div class="glass metric rounded-2xl p-6 text-center transition-transform">
+                    <div class="text-2xl mb-2">🌡️</div>
+                    <p class="text-white/70 text-sm mb-2">รู้สึกเหมือน</p>
+                    <p id="feelsLike" class="text-2xl font-semibold text-white"></p>
+                </div>
+            </div>
+
+            <div class="flex gap-4 justify-center">
+                <button onclick="addToFavorites()"
+                    class="glass btn px-6 py-3 text-white rounded-2xl flex items-center gap-2">
+                    <span>⭐</span> เพิ่มเมืองโปรด
+                </button>
+                <button onclick="shareWeather()"
+                    class="glass btn px-6 py-3 text-white rounded-2xl flex items-center gap-2">
+                    <span>📤</span> แชร์
+                </button>
+                <button onclick="toggleUnit()"
+                    class="glass btn px-6 py-3 text-white rounded-2xl flex items-center gap-2">
+                    <span>🌡️</span> °C / °F
+                </button>
+            </div>
+        </div>
+
+        <!-- Forecast -->
+        <div id="forecastDisplay" class="glass rounded-3xl p-8 max-w-4xl mx-auto hidden">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="text-xl">📅</span>
+                <h3 class="text-2xl font-semibold text-white">พยากรณ์ 5 วัน</h3>
+            </div>
+            <div id="forecastContainer" class="grid md:grid-cols-5 gap-4"></div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+<script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'969dac9453c0272e',t:'MTc1NDMwNjUxNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+
+</html>
