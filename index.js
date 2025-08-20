@@ -17,6 +17,13 @@ const ICONS = {
 };
 
 // Fallback Data
+const FALLBACK_DATA = {
+    'bangkok': { name: 'กรุงเทพฯ', weather: 'ท้องฟ้าแจ่มใส', main: 'Clear', temp: 34, humidity: 68, windSpeed: 8, feelsLike: 39 },
+    'london': { name: 'ลอนดอน', weather: 'มีเมฆมาก', main: 'Clouds', temp: 15, humidity: 78, windSpeed: 14, feelsLike: 12 },
+    'tokyo': { name: 'โตเกียว', weather: 'ฝนตกปานกลาง', main: 'Rain', temp: 22, humidity: 88, windSpeed: 13, feelsLike: 25 },
+    'paris': { name: 'ปารีส', weather: 'ฝนตกเล็กน้อย', main: 'Rain', temp: 18, humidity: 82, windSpeed: 9, feelsLike: 16 },
+    'new york': { name: 'นิวยอร์ก', weather: 'มีเมฆบางส่วน', main: 'Clouds', temp: 8, humidity: 62, windSpeed: 16, feelsLike: 4 }
+};
 
 const getIcon = (main) => ICONS[main] || '🌤️';
 // Get Weather Data
@@ -252,6 +259,8 @@ async function searchFavorite(city) {
 document.addEventListener('DOMContentLoaded', () => {
     document.body.className = `${isDarkMode ? 'dark' : 'light'}-mode min-h-screen`;
     document.getElementById('themeIcon').textContent = isDarkMode ? '☀️' : '🌙';
-    document.getElementById('cityInput').addEventListener('keypress', e => e.key === 'Enter' && searchWeather());
+    const input = document.getElementById('cityInput');
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); searchWeather(); } });
+    input.addEventListener('focus', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     updateFavoritesList();
 });
