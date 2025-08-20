@@ -1,38 +1,59 @@
- @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
- body {
-     font-family: 'Inter', sans-serif;
-     transition: background 0.3s ease;
- }
+body {
+    font-family: 'Inter', sans-serif;
+    transition: background 0.3s ease;
+}
 
- .light-mode {
-     background: linear-gradient(135deg, #bdc8f7 0%, #764ba2 100%);
- }
+.light-mode {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
 
- .dark-mode {
-     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
- }
+.dark-mode {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
 
- .glass {
-     background: rgba(255, 255, 255, 0.1);
-     backdrop-filter: blur(20px);
-     border: 1px solid rgba(255, 255, 255, 0.2);
- }
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
- .dark-mode .glass {
-     background: rgba(255, 255, 255, 0.08);
-     border: 1px solid rgba(255, 255, 255, 0.1);
- }
+.dark-mode .glass {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
 
- .btn {
-     transition: all 0.2s ease;
- }
+.btn {
+    transition: all 0.2s ease;
+}
 
- .btn:hover {
-     background: rgba(255, 255, 255, 0.2);
-     transform: translateY(-1px);
- }
+.btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
 
- .metric:hover {
-     transform: translateY(-2px);
- }
+.metric:hover {
+    transform: translateY(-2px);
+}
+
+/* Mobile input visibility and touch fixes */
+.input-control {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+
+.input-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.input-control:focus {
+    background: rgba(255, 255, 255, 0.18);
+    outline: none;
+}
+
+@media (hover: none) {
+    .btn:hover {
+        transform: none;
+    }
+}
