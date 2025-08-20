@@ -29,11 +29,12 @@
         <!-- Search -->
         <div class="glass rounded-3xl p-8 mb-12 max-w-2xl mx-auto">
             <div class="flex gap-4 mb-6">
-                <input id="cityInput" placeholder="ค้นหาเมือง เช่น Bangkok, London, Tokyo..."
-                    class="glass flex-1 px-6 py-4 rounded-2xl text-white placeholder-white/60 focus:outline-none">
+                <input id="cityInput" type="text" inputmode="text" autocomplete="off" autocapitalize="none"
+                    spellcheck="false" placeholder="ค้นหาเมือง เช่น Bangkok, London, Tokyo..."
+                    class="input-control flex-1 px-6 py-4 rounded-2xl focus:outline-none">
                 <button onclick="searchWeather()"
                     class="glass btn px-8 py-4 text-white rounded-2xl flex items-center gap-2">
-                    <span>ค้นหา</span>
+                    <span>🔍</span> ค้นหา
                 </button>
             </div>
 
@@ -101,6 +102,7 @@
             <div id="forecastContainer" class="grid md:grid-cols-5 gap-4"></div>
         </div>
     </div>
+
     <script src="index.js"></script>
 </body>
 <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'969dac9453c0272e',t:'MTc1NDMwNjUxNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
